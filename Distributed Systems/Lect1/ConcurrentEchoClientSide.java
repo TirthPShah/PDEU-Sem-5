@@ -30,7 +30,7 @@ public class ConcurrentEchoClientSide {
     public static void main(String[] args) {
         ConcurrentEchoClientSide client = new ConcurrentEchoClientSide();
         try {
-            client.startConnection("192.168.121.7", 4444);
+            client.startConnection("127.0.0.1", 4444);
 
             BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
             String userInput;
