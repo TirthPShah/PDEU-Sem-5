@@ -5,7 +5,7 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class ConcurrentEchoServerSide {
+public class ChatServerSide {
 
     // Private server socket
     ServerSocket serverSocket = null;
@@ -16,6 +16,7 @@ public class ConcurrentEchoServerSide {
 
     public void start(int port) throws IOException {
         serverSocket = new ServerSocket(port);
+        System.out.println("Server started on port " + port);
         while (true) {
             clientSocket = serverSocket.accept();
             System.out.println("Accepted connection from " + clientSocket);
@@ -39,7 +40,7 @@ public class ConcurrentEchoServerSide {
     }
 
     public static void main(String[] args) {
-        ConcurrentEchoServerSide server = new ConcurrentEchoServerSide();
+        ChatServerSide server = new ChatServerSide();
         try {
             server.start(4444);
         } catch (IOException e) {

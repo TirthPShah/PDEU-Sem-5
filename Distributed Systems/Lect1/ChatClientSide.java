@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class ConcurrentEchoClientSide {
+public class ChatClientSide {
 
     private Socket clientSocket;
     private PrintWriter out;
@@ -28,7 +28,7 @@ public class ConcurrentEchoClientSide {
     }
 
     public static void main(String[] args) {
-        ConcurrentEchoClientSide client = new ConcurrentEchoClientSide();
+        ChatClientSide client = new ChatClientSide();
         try {
             client.startConnection("127.0.0.1", 4444);
 
