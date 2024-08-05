@@ -30,7 +30,7 @@ public class ChatClientSide {
     public static void main(String[] args) {
         ChatClientSide client = new ChatClientSide();
         try {
-            client.startConnection("127.0.0.1", 4444);
+            client.startConnection("10.30.58.216", 4444);
 
             BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
             String userInput;
