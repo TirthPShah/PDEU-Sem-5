@@ -147,12 +147,14 @@ def playFairDecrypt(cypher, key):
 if choice == '1':
     input_message = input("\nEnter the message you want to encrypt: ")
     key = input("\nEnter the encryption key you want to use: ")
+    keyValue = int(input("\nEnter the key value you want to use: "))
     encrypted_message = playFairEncrypt(input_message, key)
     print("\nEncrypted Message: ", encrypted_message)
 
 elif choice == '0':
     input_message = input("\nEnter the message you want to decrypt: ")
     key = input("\nEnter the decryption key you want to use: ")
+    keyValue = int(input("\nEnter the key value you want to use: "))
     decrypted_message = playFairDecrypt(input_message, key)
     print("\nDecrypted Message: ", decrypted_message, "\n")
 
