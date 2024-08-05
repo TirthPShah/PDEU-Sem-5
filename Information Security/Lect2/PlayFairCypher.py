@@ -68,8 +68,18 @@ def findPosition(a, mat):
             return i, row.index(a)
     return None
 
+def displayMat(mat):
+    print("\nMatrix: \n")
+    for i in range(5):
+        for j in range(5):
+            print(mat[i][j], end = "   ")
+        print()
+    print()
+
+
 def playFairEncrypt(input_message, key):
     mat = getMat(key)
+    displayMat(mat)
     modified_input = modifyInput(input_message)
 
     encrypted = ""
@@ -99,6 +109,7 @@ def playFairEncrypt(input_message, key):
 def playFairDecrypt(cypher, key):
 
     mat = getMat(key)
+    displayMat(mat)
     modified_input = modifyInput(input_message)
 
     plain = ""
