@@ -14,6 +14,16 @@
             text-align: center;
         }
 
+        #ulID::before {
+            content: "List Items:";
+            font-weight: bold;
+        }
+
+        #ulID::after {
+            content: "End of List";
+            font-weight: bold;
+        }
+
         #firstBlock {
             margin-top: 30px;
             margin-bottom: 30px;
@@ -33,6 +43,16 @@
             
         }
 
+        #firstBlock::first-letter {
+            font-size: 1.5em;
+        }
+
+        #firstBlock::first-line {
+            font-size: 1.3em;
+        }
+
+        
+
         #secondBlock {
             margin: 30px;
             padding: 30px;
@@ -40,6 +60,14 @@
             text-decoration: underline rgb(67, 79, 255) solid 10%;
         }
 
+
+                #secondBlock::first-letter {
+            font-size: 1.5em;
+        }
+
+        #secondBlock::first-line {
+            font-size: 1.3em;
+        }
     </style>
 </head>
 <body>
@@ -69,5 +97,11 @@
         <p>outline: 1px dashed black</p>
         <p>text-decoration: line-through red solid 10%</p>
     </div>
+
+    <ul id="ulID">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
 </body>
 </html>
