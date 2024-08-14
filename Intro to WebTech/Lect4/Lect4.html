@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lect4</title>
+    <style>
+
+        body {
+            text-align: center;
+        }
+        a:link {
+            color: red;
+        }
+
+        a:visited {
+            color: green;
+        }
+
+        a:hover {
+            color: blue;
+        }
+
+        a:active {
+            color: yellow;
+        }
+
+        #ytVideo {
+            /* center align the iframe */
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+
+        }
+
+        #psuedoAnchor {
+            margin: 0 auto;
+            width: 50%;
+        }
+
+        #happyDiwali {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+
+        #audioTag {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Example of psuedo classes -->
+    
+    <a id="psuedoAnchor" href="https://www.nvidia.com">Red - Not Visited - Green - Visited - Blue - Hover - Yellow - Active</a>
+
+    <br><br>
+
+    <p style="text-align: center;">Embeding youtube video</p>
+
+    <iframe width="800" height="415" src="https://www.youtube.com/embed/N8BUCSOU5UA?playlist=N8BUCSOU5UA&autoplay=1&loop=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <br><br>
+
+    <p style="text-align: center;"> HTML Video Tag </p>
+
+    <video id="happyDiwali" src="./videoplayback.mp4" loop controls></video>
+
+    <br><br>
+
+    <p style="text-align: center;"> HTML Audio Tag </p>
+
+    <audio id="audioTag" src="./videoplayback.mp3" loop controls></audio>
+
+</iframe>
+</body>
+</html>

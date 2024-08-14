@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lect3</title>
+    <style>
+
+        #info {
+            text-align: center;
+        }
+
+        #textTransformButtons {
+            text-align: center;
+        }
+
+        #ulID::before {
+            content: "List Items:";
+            font-weight: bold;
+        }
+
+        #ulID::after {
+            content: "End of List";
+            font-weight: bold;
+        }
+
+        #firstBlock {
+            margin-top: 30px;
+            margin-bottom: 30px;
+            margin-right: 30px;
+            margin-left: 30px;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            padding-right: 30px;
+            padding-left: 30px;
+            text-decoration-line: underline;
+            text-decoration-color: rgb(67, 79, 255);
+            text-decoration-style: solid;
+            text-decoration-thickness: 10%;
+            outline-width: 3px;
+            outline-style: dashed;
+            outline-color: black;
+            
+        }
+
+        #firstBlock::first-letter {
+            font-size: 1.5em;
+        }
+
+        #firstBlock::first-line {
+            font-size: 1.3em;
+        }
+
+        
+
+        #secondBlock {
+            margin: 30px;
+            padding: 30px;
+            outline: 3px dashed black;
+            text-decoration: underline rgb(67, 79, 255) solid 10%;
+        }
+
+
+                #secondBlock::first-letter {
+            font-size: 1.5em;
+        }
+
+        #secondBlock::first-line {
+            font-size: 1.3em;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="info">
+        <h2>Info</h2>
+        <p><strong>Margin Shorthand: </strong> top right bottom left</p>
+    </div>
+
+    <div id="textTransformButtons">
+        <button onclick="document.getElementById('info').style.textTransform='uppercase'">UpperCase Info Block</button>
+        <button onclick="document.getElementById('info').style.textTransform='lowercase'">LowerCase Info Block</button>
+        <button onclick="document.getElementById('info').style.textTransform='capitalize'">Capitalize Info Block</button>
+    </div>
+    <div id="firstBlock">
+        <p>Contents of first block with no shorthand</p>
+        <p>margin-top: 30px, margin-bottom: 30px, margin-right: 30px, margin-left: 30px</p>
+        <p>padding-top: 30px, padding-bottom: 30px, padding-right: 30px, padding-left: 30px</p>
+        <p>outline-width: 1px, outline-style: dashed, outline-color: black</p>
+        <p>text-decoration-line: strikethrough, text-decoration-color: red, text-decoration-style: solid, text-decoration-thickness: 10%</p>
+    </div>
+
+    <div id="secondBlock">
+        <p>Contents of second block with shorthand</p>
+        <p>margin: 30px</p>
+        <p>padding: 30px</p>
+        <p>outline: 1px dashed black</p>
+        <p>text-decoration: line-through red solid 10%</p>
+    </div>
+
+    <ul id="ulID">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+</body>
+</html>

@@ -1,0 +1,12 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/tirthshah/Documents/PDEU-Sem-5/System Software and Compiler Design/Lect4/RemoveLeftRecursion'
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _removeLeftRecursion, symObjAddr: 0x0, symBinAddr: 0x100003B10, symSize: 0x36C }
+  - { offsetInCU: 0x4D, offset: 0x4D, size: 0x8, addend: 0x0, symName: _input, symBinAddr: 0x100008000, symSize: 0x0 }
+  - { offsetInCU: 0x6E, offset: 0x6E, size: 0x8, addend: 0x0, symName: _lookahead, symBinAddr: 0x100008068, symSize: 0x0 }
+  - { offsetInCU: 0x8D, offset: 0x8D, size: 0x8, addend: 0x0, symName: _output, symBinAddr: 0x100008070, symSize: 0x0 }
+  - { offsetInCU: 0xAE, offset: 0xAE, size: 0x8, addend: 0x0, symName: _outputPtr, symBinAddr: 0x100008138, symSize: 0x0 }
+  - { offsetInCU: 0xBC, offset: 0xBC, size: 0x8, addend: 0x0, symName: _removeLeftRecursion, symObjAddr: 0x0, symBinAddr: 0x100003B10, symSize: 0x36C }
+  - { offsetInCU: 0xFC, offset: 0xFC, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x36C, symBinAddr: 0x100003E7C, symSize: 0xB8 }
+...

@@ -1,0 +1,10 @@
+// This is a single-line comment
+printf("Hello, World!");
+
+/*
+This is a multi-line comment.
+It can span multiple lines.
+*/
+
+#include <stdio.h>
+int a;

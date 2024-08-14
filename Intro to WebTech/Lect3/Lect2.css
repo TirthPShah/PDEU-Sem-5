@@ -1,0 +1,14 @@
+#FormTitle {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+legend {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: larger;
+}
+
+fieldset {
+    margin: 20px auto;
+}
