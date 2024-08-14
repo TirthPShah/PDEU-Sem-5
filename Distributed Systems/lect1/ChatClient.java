@@ -42,7 +42,7 @@ public class ChatClient {
                         // Clear the current line and then print the server message
                         System.out.println("\033[2K");
                         System.out.println(serverMessage);
-                        System.out.println(callSign + ": ");
+                        System.out.print(callSign + ": ");
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
