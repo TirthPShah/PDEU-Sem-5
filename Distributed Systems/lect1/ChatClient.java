@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class ChatClientSide {
+public class ChatClient {
 
     private Socket clientSocket;
     private PrintWriter out;
@@ -75,7 +75,7 @@ public class ChatClientSide {
     }
 
     public static void main(String[] args) {
-        ChatClientSide client = new ChatClientSide();
+        ChatClient client = new ChatClient();
         client.run();
     }
 }
