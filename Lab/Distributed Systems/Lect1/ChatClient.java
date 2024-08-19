@@ -11,58 +11,73 @@ public class ChatClient {
     private BufferedReader in;
     private boolean callSignSet = false;
     private String callSign = "Client";
+    private String serverIp = "localhost";
+    private int serverPort = 4221;
+    private Thread serverListenerThread;
 
     public void startConnection(String ip, int port) throws IOException {
         clientSocket = new Socket(ip, port);
         out = new PrintWriter(clientSocket.getOutputStream(), true);
         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+        System.out.println("Connected to server at " + ip + ":" + port);
     }
 
     public void sendMessage(String msg) {
-        out.println(msg);  // Send message without waiting for a response
+        if (out != null) {
+            out.println(msg);
+        }
     }
 
-    public void stopConnection() throws IOException {
-        in.close();
-        out.close();
-        clientSocket.close();
+    public void stopConnection() {
+        try {
+            if (in != null) in.close();
+            if (out != null) out.close();
+            if (clientSocket != null) clientSocket.close();
+        } catch (IOException e) {
+            System.out.println("Error closing connection: " + e.getMessage());
+        }
+    }
+
+
+    public void startServerListener() {
+        serverListenerThread = new Thread(() -> {
+            try {
+                String serverMessage;
+                while ((serverMessage = in.readLine()) != null) {
+                    System.out.println("\033[2K");  // Clear the current line
+                    System.out.println(serverMessage);
+                    System.out.print(callSign + ": ");
+                }
+            } catch (IOException e) {
+                System.out.println("Disconnected from server.");
+            }
+        });
+        serverListenerThread.start();
     }
 
     public void run() {
-        
         try {
-            startConnection("localhost", 4221);
-
-            // Thread to handle incoming messages from the server
-            new Thread(() -> {
-                try {
-                    String serverMessage;
-                    while ((serverMessage = in.readLine()) != null) {
-
-                        // Clear the current line and then print the server message
-                        System.out.println("\033[2K");
-                        System.out.println(serverMessage);
-                        System.out.print(callSign + ": ");
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }).start();
+            startConnection(serverIp, serverPort);
+            startServerListener();  // Start listening to server messages
 
             BufferedReader stdIn = new BufferedReader(new InputStreamReader(System.in));
             String userInput;
-            System.out.print("Enter your call sign: ");
-            callSign = stdIn.readLine();
-            callSignSet = true;
-            sendMessage(callSign);  // Send the call sign to the server
+            if (!callSignSet) {
+                System.out.print("Enter Your Call Sign: ");
+                callSign = stdIn.readLine();
+                callSignSet = true;
+                sendMessage(callSign);  // Send the call sign to the server
+            }
 
-            System.out.println("Type your messages (type '@exit' to quit):");
+            System.out.println("Type your messages (type '@exit' to quit, \n\033[26G'@list' to list all the available persons to chat, \n\033[26G'@broadcast' to send a message to all available persons, \n\033[26G'@CallSign' replace CallSign to the call sign of the person you want to do 1-1 chat):");
             System.out.print(callSign + ": ");
 
             while ((userInput = stdIn.readLine()) != null) {
-                sendMessage(userInput);
                 if ("@exit".equalsIgnoreCase(userInput)) {
+                    sendMessage(userInput);
                     break;
+                } else {
+                    sendMessage(userInput);
                 }
                 System.out.print(callSign + ": ");
             }
@@ -70,7 +85,7 @@ public class ChatClient {
             stopConnection();
             stdIn.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Failed to connect to server: " + e.getMessage());
         }
     }
 

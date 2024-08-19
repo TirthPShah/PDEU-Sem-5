@@ -3,10 +3,13 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class ChatServer implements Runnable {
 
@@ -15,7 +18,6 @@ public class ChatServer implements Runnable {
     private HashMap<String, ClientHandler> clientMap;  // Map to store call signs and their handlers
     private boolean done;
     private ExecutorService pool;
-    private String callSign = "Server";
 
     public ChatServer(int port) {
         clients = new ArrayList<>();
@@ -28,7 +30,7 @@ public class ChatServer implements Runnable {
         try {
             serverSocket = new ServerSocket(4221);
             pool = Executors.newCachedThreadPool();
-            System.out.println("Server started on port 4221");
+            log("Server started on port 4221");
 
             while (!done) {
                 Socket client = serverSocket.accept();
@@ -37,7 +39,7 @@ public class ChatServer implements Runnable {
                 pool.execute(clientThread);
             }
         } catch (Exception e) {
-            System.out.println("Error starting server: " + e.getMessage());
+            log("Error starting server: " + e.getMessage());
             e.printStackTrace();
         } finally {
             shutServer();
@@ -64,16 +66,54 @@ public class ChatServer implements Runnable {
         pool.shutdown();
     }
 
+    private void log(String message) {
+        String timestamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+        System.out.println("[" + timestamp + "] " + message);
+    }
+
+    class TimeoutHandler implements Runnable {
+        private ClientHandler clientHandler;
+        private volatile boolean active;
+
+        public TimeoutHandler(ClientHandler clientHandler) {
+            this.clientHandler = clientHandler;
+            this.active = true;
+        }
+
+        @Override
+        public void run() {
+            try {
+                while (active) {
+                    TimeUnit.MINUTES.sleep(1);
+                    if (active) {
+                        log("User " + clientHandler.getCallSign() + " has been inactive for 1 minute. Disconnecting...");
+                        clientHandler.sendMessage("You have been inactive for 1 minute. Disconnecting... Exit and reconnect to chat again.");
+                        clientHandler.shutClient();
+                        break;
+                    }
+                }
+            } catch (InterruptedException e) {
+                log("Timeout interrupted for user " + clientHandler.getCallSign());
+            }
+        }
+
+        public void reset() {
+            active = false;
+            active = true;  // Reset the activity flag to true
+        }
+    }
+
     class ClientHandler implements Runnable {
 
         private BufferedReader in;
         private PrintWriter out;
         private Socket client;
         private String callSign;
+        private TimeoutHandler timeoutHandler;
 
         public ClientHandler(Socket client) {
             this.client = client;
-            System.out.println("Client connected: " + client.getInetAddress());
+            log("Client connected: " + client.getInetAddress());
         }
 
         @Override
@@ -92,13 +132,18 @@ public class ChatServer implements Runnable {
                     clientMap.put(callSign, this);
                 }
 
-                System.out.println("Broadcast: User " + callSign + " has joined the chat!!");
+                // Initialize and start the timeout handler
+                timeoutHandler = new TimeoutHandler(this);
+                pool.execute(timeoutHandler);
+
+                log("Broadcast: User " + callSign + " has joined the chat!!");
                 broadcast("User " + callSign + " has joined the chat!!");
 
                 String inputLine;
                 while ((inputLine = in.readLine()) != null) {
+                    timeoutHandler.reset();  // Reset the timeout on any client activity
                     if (inputLine.equals("@exit")) {
-                        System.out.println("User " + callSign + " has left the chat!!");
+                        log("User " + callSign + " has left the chat!!");
                         broadcast("User " + callSign + " has left the chat!!");
                         shutClient();
                         break;
@@ -116,7 +161,7 @@ public class ChatServer implements Runnable {
                     }
                 }
             } catch (Exception e) {
-                System.out.println("Error handling client: " + e.getMessage());
+                log("Error handling client: " + e.getMessage());
                 e.printStackTrace();
             } finally {
                 shutClient();
@@ -148,12 +193,16 @@ public class ChatServer implements Runnable {
                     client.close();
                 }
             } catch (Exception e) {
-                System.out.println("Error shutting down client: " + callSign);
+                log("Error shutting down client: " + callSign);
             }
         }
 
         public void sendMessage(String message) {
             out.println(message);
+        }
+
+        public String getCallSign() {
+            return callSign;
         }
     }
 
