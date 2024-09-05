@@ -1,0 +1,47 @@
+for (int i = 0; i < rhs.size(); i++) {
+    if (isupper(rhs[i])) {
+        if (i == rhs.size() - 1) {
+            if(follow[entry.first].empty()) {
+                calculateFollowSet(entry.first, first, productions, follow);
+            }
+
+            for (char c : follow[entry.first]) {
+                follow[rhs[i]].insert(c);
+            }
+        } else {
+            bool doesFirstOfNextSymbolContainEpsilon = false;
+            
+            if (isupper(rhs[i + 1])) {
+                for (char c : first[rhs[i + 1]]) {
+                    if (c == '@') {
+                        doesFirstOfNextSymbolContainEpsilon = true;
+                    } else {
+                        follow[rhs[i]].insert(c);
+                    }
+                }
+
+                int j = i + 2;
+
+                while(doesFirstOfNextSymbolContainEpsilon && j < rhs.size()) {
+                    if (isupper(rhs[j])) {
+                        for (char c : first[rhs[j]]) {
+                            if (c == '@') {
+                                doesFirstOfNextSymbolContainEpsilon = true;
+                            } else {
+                                follow[rhs[i]].insert(c);
+                                doesFirstOfNextSymbolContainEpsilon = false;
+                            }
+                        }
+                    } else {
+                        follow[rhs[i]].insert(rhs[j]);
+                        break;
+                    }
+
+                    j++;
+                }
+            } else {
+                follow[rhs[i]].insert(rhs[i + 1]);
+            }
+        }
+    }
+}

@@ -1,169 +1,220 @@
 #include <iostream>
 #include <vector>
+#include <string>
 #include <map>
 #include <set>
-#include <string>
+
 using namespace std;
 
-// Production rule
-class Rule {
+class FollowSetCalc {
 public:
-    char lhs;
-    string rhs;
-    Rule(char lhs, string rhs) {
-        this->lhs = lhs;
-        this->rhs = rhs;
+    char startSymbol = 'E';
+    map<char, vector<string>> productions;
+    map<char, set<char>> firstSet;
+    map<char, set<char>> followSet;
+    map<char, map<char, string>> parsingTable;
+    map<char, vector<pair<char, string>>> nonTerminalInfo; // New data structure
+    set<char> terminals = {'+', '*', '(', ')', 'i', '$'};
+    set<char> nonTerminals = {'A', 'B', 'E', 'F', 'T'};
+
+    char epsilon = '#';
+    char endMarker = '$';
+
+    void initializeProductions() {
+        productions['A'] = {"#", "+TA"};
+        productions['B'] = {"#", "*FB"};
+        productions['E'] = {"TA"};
+        productions['F'] = {"i", "(E)"};
+        productions['T'] = {"FB"};
     }
-};
 
-// First Set Function for a single rule
-void computeFirstSetForRule(Rule rule, map<char, set<char> >& first, map<char, vector<string> >& productions) {
-    string rhs = rule.rhs;
-
-    if (rhs[0] == '@') {  // epsilon
-        first[rule.lhs].insert('@');
-    } else if (islower(rhs[0]) || rhs[0] == '+' || rhs[0] == '*' || rhs[0] == '(' || rhs[0] == ')') {
-        first[rule.lhs].insert(rhs[0]);  // terminal symbol
-    } else {
-        for (char symbol : rhs) {
-            if (islower(symbol) || symbol == '+' || symbol == '*' || symbol == '(' || symbol == ')') {
-                first[rule.lhs].insert(symbol);  // terminal symbol
-                break;
-            } else {
-                for (char c : first[symbol]) {
-                    if (c != '@') {
-                        first[rule.lhs].insert(c);
-                    }
-                }
-            }
+    void initFirstSet() {
+        for (const auto& entry : productions) {
+            firstSet[entry.first] = {};
         }
     }
-}
 
-// Recursive function to calculate the First set for non-terminals
-void calculateFirstSet(char nonTerminal, map<char, set<char> >& first, map<char, vector<string> >& productions) {
+    void initFollowSet() {
+        for (const auto& entry : productions) {
+            followSet[entry.first] = {};
+        }
+        followSet[startSymbol].insert(endMarker);
+    }
 
-    for (string rhs : productions[nonTerminal]) {
-        if (rhs[0] == '@') {
-            first[nonTerminal].insert('@');
-        } else {
-            for (char symbol : rhs) {
-                if (islower(symbol) || symbol == '+' || symbol == '*' || symbol == '(' || symbol == ')') {
-                    first[nonTerminal].insert(symbol);
-                    break;
-                } else {
-                    if (first[symbol].empty()) {
-                        calculateFirstSet(symbol, first, productions);
-                    }
-                    for (char c : first[symbol]) {
-                        if (c != '@') {
-                            first[nonTerminal].insert(c);
+    bool add(map<char, set<char>>& setMap, char key, char value) {
+        if(setMap[key].count(value) == 0) {
+            setMap[key].insert(value);
+            return true;
+        }
+        return false;
+    }
+
+    bool addAll(map<char, set<char>>& setMap, char key, const set<char>& values) {
+        auto& targetSet = setMap[key];
+        auto beforeSize = targetSet.size();
+
+        targetSet.insert(values.begin(), values.end());
+
+        return targetSet.size() > beforeSize;
+    }
+
+    void calcFirstSet() {
+        bool changed;
+
+        do {
+            changed = false;
+            for(const auto& entry : productions) {
+                char nonTerminal = entry.first;
+                for(const string& rhs : entry.second) {
+                    for(char symbol : rhs) {
+                        if(!isupper(symbol)) {
+                            changed |= add(firstSet, nonTerminal, symbol);
+                            nonTerminalInfo[nonTerminal].emplace_back(symbol, rhs);
+                            break;
+                        }
+                        else {
+                            set<char> firstOfSymbol = firstSet[symbol];
+                            changed |= addAll(firstSet, nonTerminal, firstOfSymbol);
+                            if (firstOfSymbol.count(epsilon) == 0) {
+                                break;
+                            }
                         }
                     }
                 }
             }
+        } while(changed);
+    }
+
+    void calcFollowSet() {
+        bool changed;
+
+        do {
+            changed = false;
+            for(const auto& entry : productions) {
+                char nonTerminal = entry.first;
+                for(const string& rhs : entry.second) {
+                    for(size_t i = 0; i < rhs.size(); ++i) {
+                        if(isupper(rhs[i])) {
+                            if(i + 1 < rhs.size()) {
+                                char nextSymbol = rhs[i + 1];
+                                if(isupper(nextSymbol)) {
+                                    set<char> firstOfNext = firstSet[nextSymbol];
+                                    for(char c : firstOfNext) {
+                                        if(c != epsilon) {
+                                            changed |= add(followSet, rhs[i], c);
+                                        }
+                                    }
+                                    if(firstOfNext.count(epsilon)) {
+                                        changed |= addAll(followSet, rhs[i], followSet[nonTerminal]);
+                                    }
+                                } else {
+                                    changed |= add(followSet, rhs[i], nextSymbol);
+                                }
+                            } else {
+                                changed |= addAll(followSet, rhs[i], followSet[nonTerminal]);
+                            }
+                        }
+                    }
+                }
+            }
+        } while(changed);
+    }
+
+    void printNonTerminalInfo() {
+        cout << "\nNon-terminal Info:\n";
+        for (const auto& entry : nonTerminalInfo) {
+            cout << "Non-terminal: " << entry.first << endl;
+            for (const auto& [firstElement, production] : entry.second) {
+                cout << "First element: " << firstElement << ", Production: " << production << endl;
+            }
         }
     }
-}
 
-void calculateFollowSet(char nonTerminal, map<char, set<char> >& follow, map<char, vector<string> >& productions) {
-    if (nonTerminal == 'E') {
-        follow[nonTerminal].insert('$');
-    }
+    void makeParseTable() {
+    // Initialize parsing table with "error"
 
-    for (auto& entry : productions) {
-        for (string rhs : entry.second) {
-            for (int i = 0; i < rhs.length(); i++) {
-                if()
-
-}
-
-// Generate First Set for each non-terminal
-map<char, set<char> > getFirstSet(vector<Rule> rules) {
-    map<char, set<char> > first;
-    map<char, vector<string> > productions;
-
-    // Organize productions by non-terminal
-    for (Rule rule : rules) {
-        productions[rule.lhs].push_back(rule.rhs);
-    }
-
-    // Calculate First set for each non-terminal
-    for (auto& entry : productions) {
-        calculateFirstSet(entry.first, first, productions);
-    }
-
-    return first;
-}
-
-// Print First Set for each non-terminal
-void printFirstSet(map<char, set<char> > first) {
-    cout << "\nFirst Set For Each Non-terminal:\n" << endl;
-    for (auto it : first) {
-        cout << "First(" << it.first << ") = { ";
-        for (char c : it.second) {
-            cout << c << " ";
+    for (char nt : nonTerminals) {
+        for (char t : terminals) {
+            parsingTable[nt][t] = "error";
         }
-        cout << "}" << endl;
-    }
-}
-
-// Generate Follow Set for each non-terminal
-map<char, set<char> > getFollowSet(vector<Rule> rules) {
-    map<char, set<char> > follow;
-    map<char, vector<string> > productions;
-
-    // Organize productions by non-terminal
-    for (Rule rule : rules) {
-        productions[rule.lhs].push_back(rule.rhs);
     }
 
-    // Calculate Follow set for each non-terminal
-    for (auto& entry : productions) {
-        calculateFollowSet(entry.first, follow, productions);
-    }
+    // Fill parsing table based on nonTerminalInfo
+    for (const auto& ntEntry : nonTerminalInfo) {
 
-    return follow;
-}
+        char nonTerminal = ntEntry.first;
+        for (const auto& [firstElement, production] : ntEntry.second) {
+
+            cout << "Non-terminal: " << nonTerminal << ", First element: " << firstElement << ", Production: " << production << endl;
+
+            if (firstElement != epsilon) {
+                parsingTable[nonTerminal][firstElement] = production;
+            }
 
 
-// Print Follow Set for each non-terminal
-void printFollowSet(map<char, set<char> > follow) {
-    cout << "\nFollow Set For Each Non-terminal:\n" << endl;
-    for (auto it : follow) {
-        cout << "Follow(" << it.first << ") = { ";
-        for (char c : it.second) {
-            cout << c << " ";
         }
-        cout << "}" << endl;
+
     }
 }
+
+
+void printParsingTable() {
+    cout << "\nParsing Table:\n";
+    // Print header row
+    cout << "    ";
+    for (char t : terminals) {
+        cout << t << "   ";
+    }
+    cout << endl;
+
+    // Print table rows
+    for (const auto& row : parsingTable) {
+        char nonTerminal = row.first;
+        cout << nonTerminal << " ";
+        for (char t : terminals) {
+            cout << row.second.at(t) << "   ";
+        }
+        cout << endl;
+    }
+}
+
+
+    void displayFirstSet() {
+        cout << "\nFirst Sets:\n";
+        for (const auto& entry : firstSet) {
+            cout << "FIRST(" << entry.first << ") = { ";
+            for (char c : entry.second) {
+                cout << c << " ";
+            }
+            cout << "}\n";
+        }
+    }
+
+    void displayFollowSet() {
+        cout << "\nFollow Sets:\n";
+        for (const auto& entry : followSet) {
+            cout << "FOLLOW(" << entry.first << ") = { ";
+            for (char c : entry.second) {
+                cout << c << " ";
+            }
+            cout << "}\n";
+        }
+    }
+};
 
 int main() {
-    // Grammar initialization
-    vector<Rule> rules;
-    rules.push_back(Rule('F', "i"));
-    rules.push_back(Rule('F', "(E)"));
-    rules.push_back(Rule('B', "@"));  // epsilon
-    rules.push_back(Rule('B', "*FB"));
-    rules.push_back(Rule('T', "FB"));
-    rules.push_back(Rule('A', "@"));  // epsilon
-    rules.push_back(Rule('A', "+TA"));
-    rules.push_back(Rule('E', "TA"));
+    FollowSetCalc calc;
+    calc.initializeProductions();
+    calc.initFirstSet();
+    calc.initFollowSet();
 
-    // Print Grammar
-    cout << "Grammar:\n" << endl;
-    for (Rule rule : rules) {
-        cout << rule.lhs << " -> " << rule.rhs << endl;
-    }
+    calc.calcFirstSet();
+    calc.calcFollowSet();
 
-    // Calculate First Set
-    map<char, set<char> > first = getFirstSet(rules);
-
-    // Print First Set for each non-terminal
-    printFirstSet(first);
-
-
+    calc.makeParseTable();
+    calc.displayFirstSet();
+    calc.displayFollowSet();
+    calc.printParsingTable();
 
     return 0;
 }
