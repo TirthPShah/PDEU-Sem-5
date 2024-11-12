@@ -1,14 +1,29 @@
-#FormTitle {
-    text-align: center;
-    font-family: 'Courier New', Courier, monospace;
+
+form {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
 }
 
-legend {
-    text-align: center;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: larger;
+label {
+    font-weight: bold;
+    margin-right: 10px;
 }
 
-fieldset {
-    margin: 20px auto;
+input[type="text"], input[type="email"], input[type="password"], input[type="number"], input[type="date"], input[type="file"], input[type="color"], textarea, select {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    box-sizing: border-box;
+}
+
+input[type='color'] {
+    height: 50px;
+}
+
+textarea {
+    resize: vertical;
 }

@@ -1,0 +1,38 @@
+<categories>
+    
+    <bikes>
+        <bike>
+            <brand>Honda</brand>
+            <model>CB350</model>
+            <engine>349.2cc</engine>
+        <bike>
+        <bike>
+            <brand>Royal Enfield</brand>
+            <model>Himalayan</model>
+            <engine>448.9cc</engine>
+        <bike>
+        <bike>
+            <brand>Honda</brand>
+            <model>CB350</model>
+            <engine>349.2cc</engine>
+        <bike>
+    </bikes>
+
+    <cars>
+        <car>
+            <brand>Toyota</brand>
+            <model>Fortuner</model>
+            <engine>2755cc</engine>    
+        </car>
+        <car>
+            <brand>Ford</brand>
+            <model>Endevaour</model>
+            <engine>2998cc</engine>    
+        </car>
+        <car>
+            <brand>Mahindra</brand>
+            <model>XUV700</model>
+            <engine>2198cc</engine>    
+        </car>
+    </cars>
+</categories>

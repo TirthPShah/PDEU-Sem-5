@@ -1,0 +1,164 @@
+2024-10-23 15:13:59,091 - INFO - Starting matrix multiplication.
+2024-10-23 15:13:59,091 - DEBUG - Dimensions of A: 3x3
+2024-10-23 15:13:59,091 - DEBUG - Dimensions of B: 3x4
+2024-10-23 15:13:59,091 - INFO - Matrix dimensions are valid for multiplication.
+2024-10-23 15:13:59,091 - DEBUG - Updated c[0][0] to 1 using A[0][0]=1 and B[0][0]=1
+2024-10-23 15:13:59,091 - DEBUG - Updated c[0][0] to 9 using A[0][1]=2 and B[1][0]=4
+2024-10-23 15:13:59,091 - DEBUG - Updated c[0][0] to 30 using A[0][2]=3 and B[2][0]=7
+2024-10-23 15:13:59,091 - DEBUG - Updated c[0][1] to 2 using A[0][0]=1 and B[0][1]=2
+2024-10-23 15:13:59,091 - DEBUG - Updated c[0][1] to 12 using A[0][1]=2 and B[1][1]=5
+2024-10-23 15:13:59,091 - DEBUG - Updated c[0][1] to 36 using A[0][2]=3 and B[2][1]=8
+2024-10-23 15:13:59,091 - DEBUG - Updated c[0][2] to 3 using A[0][0]=1 and B[0][2]=3
+2024-10-23 15:13:59,091 - DEBUG - Updated c[0][2] to 15 using A[0][1]=2 and B[1][2]=6
+2024-10-23 15:13:59,091 - DEBUG - Updated c[0][2] to 42 using A[0][2]=3 and B[2][2]=9
+2024-10-23 15:13:59,091 - DEBUG - Updated c[0][3] to 12 using A[0][0]=1 and B[0][3]=12
+2024-10-23 15:13:59,091 - DEBUG - Updated c[0][3] to 34 using A[0][1]=2 and B[1][3]=11
+2024-10-23 15:13:59,091 - DEBUG - Updated c[0][3] to 64 using A[0][2]=3 and B[2][3]=10
+2024-10-23 15:13:59,091 - DEBUG - Updated c[1][0] to 4 using A[1][0]=4 and B[0][0]=1
+2024-10-23 15:13:59,091 - DEBUG - Updated c[1][0] to 24 using A[1][1]=5 and B[1][0]=4
+2024-10-23 15:13:59,091 - DEBUG - Updated c[1][0] to 66 using A[1][2]=6 and B[2][0]=7
+2024-10-23 15:13:59,091 - DEBUG - Updated c[1][1] to 8 using A[1][0]=4 and B[0][1]=2
+2024-10-23 15:13:59,091 - DEBUG - Updated c[1][1] to 33 using A[1][1]=5 and B[1][1]=5
+2024-10-23 15:13:59,091 - DEBUG - Updated c[1][1] to 81 using A[1][2]=6 and B[2][1]=8
+2024-10-23 15:13:59,091 - DEBUG - Updated c[1][2] to 12 using A[1][0]=4 and B[0][2]=3
+2024-10-23 15:13:59,091 - DEBUG - Updated c[1][2] to 42 using A[1][1]=5 and B[1][2]=6
+2024-10-23 15:13:59,091 - DEBUG - Updated c[1][2] to 96 using A[1][2]=6 and B[2][2]=9
+2024-10-23 15:13:59,091 - DEBUG - Updated c[1][3] to 48 using A[1][0]=4 and B[0][3]=12
+2024-10-23 15:13:59,091 - DEBUG - Updated c[1][3] to 103 using A[1][1]=5 and B[1][3]=11
+2024-10-23 15:13:59,091 - DEBUG - Updated c[1][3] to 163 using A[1][2]=6 and B[2][3]=10
+2024-10-23 15:13:59,091 - DEBUG - Updated c[2][0] to 7 using A[2][0]=7 and B[0][0]=1
+2024-10-23 15:13:59,091 - DEBUG - Updated c[2][0] to 39 using A[2][1]=8 and B[1][0]=4
+2024-10-23 15:13:59,092 - DEBUG - Updated c[2][0] to 102 using A[2][2]=9 and B[2][0]=7
+2024-10-23 15:13:59,092 - DEBUG - Updated c[2][1] to 14 using A[2][0]=7 and B[0][1]=2
+2024-10-23 15:13:59,092 - DEBUG - Updated c[2][1] to 54 using A[2][1]=8 and B[1][1]=5
+2024-10-23 15:13:59,092 - DEBUG - Updated c[2][1] to 126 using A[2][2]=9 and B[2][1]=8
+2024-10-23 15:13:59,092 - DEBUG - Updated c[2][2] to 21 using A[2][0]=7 and B[0][2]=3
+2024-10-23 15:13:59,092 - DEBUG - Updated c[2][2] to 69 using A[2][1]=8 and B[1][2]=6
+2024-10-23 15:13:59,092 - DEBUG - Updated c[2][2] to 150 using A[2][2]=9 and B[2][2]=9
+2024-10-23 15:13:59,092 - DEBUG - Updated c[2][3] to 84 using A[2][0]=7 and B[0][3]=12
+2024-10-23 15:13:59,092 - DEBUG - Updated c[2][3] to 172 using A[2][1]=8 and B[1][3]=11
+2024-10-23 15:13:59,092 - DEBUG - Updated c[2][3] to 262 using A[2][2]=9 and B[2][3]=10
+2024-10-23 15:13:59,092 - CRITICAL - Unexpected error: local variable 'e' referenced before assignment
+2024-10-23 15:14:09,878 - INFO - Starting matrix multiplication.
+2024-10-23 15:14:09,878 - DEBUG - Dimensions of A: 3x3
+2024-10-23 15:14:09,878 - DEBUG - Dimensions of B: 3x4
+2024-10-23 15:14:09,878 - INFO - Matrix dimensions are valid for multiplication.
+2024-10-23 15:14:09,878 - DEBUG - Updated c[0][0] to 1 using A[0][0]=1 and B[0][0]=1
+2024-10-23 15:14:09,878 - DEBUG - Updated c[0][0] to 9 using A[0][1]=2 and B[1][0]=4
+2024-10-23 15:14:09,878 - DEBUG - Updated c[0][0] to 30 using A[0][2]=3 and B[2][0]=7
+2024-10-23 15:14:09,878 - DEBUG - Updated c[0][1] to 2 using A[0][0]=1 and B[0][1]=2
+2024-10-23 15:14:09,878 - DEBUG - Updated c[0][1] to 12 using A[0][1]=2 and B[1][1]=5
+2024-10-23 15:14:09,878 - DEBUG - Updated c[0][1] to 36 using A[0][2]=3 and B[2][1]=8
+2024-10-23 15:14:09,878 - DEBUG - Updated c[0][2] to 3 using A[0][0]=1 and B[0][2]=3
+2024-10-23 15:14:09,878 - DEBUG - Updated c[0][2] to 15 using A[0][1]=2 and B[1][2]=6
+2024-10-23 15:14:09,878 - DEBUG - Updated c[0][2] to 42 using A[0][2]=3 and B[2][2]=9
+2024-10-23 15:14:09,878 - DEBUG - Updated c[0][3] to 12 using A[0][0]=1 and B[0][3]=12
+2024-10-23 15:14:09,878 - DEBUG - Updated c[0][3] to 34 using A[0][1]=2 and B[1][3]=11
+2024-10-23 15:14:09,878 - DEBUG - Updated c[0][3] to 64 using A[0][2]=3 and B[2][3]=10
+2024-10-23 15:14:09,878 - DEBUG - Updated c[1][0] to 4 using A[1][0]=4 and B[0][0]=1
+2024-10-23 15:14:09,878 - DEBUG - Updated c[1][0] to 24 using A[1][1]=5 and B[1][0]=4
+2024-10-23 15:14:09,878 - DEBUG - Updated c[1][0] to 66 using A[1][2]=6 and B[2][0]=7
+2024-10-23 15:14:09,878 - DEBUG - Updated c[1][1] to 8 using A[1][0]=4 and B[0][1]=2
+2024-10-23 15:14:09,878 - DEBUG - Updated c[1][1] to 33 using A[1][1]=5 and B[1][1]=5
+2024-10-23 15:14:09,878 - DEBUG - Updated c[1][1] to 81 using A[1][2]=6 and B[2][1]=8
+2024-10-23 15:14:09,878 - DEBUG - Updated c[1][2] to 12 using A[1][0]=4 and B[0][2]=3
+2024-10-23 15:14:09,878 - DEBUG - Updated c[1][2] to 42 using A[1][1]=5 and B[1][2]=6
+2024-10-23 15:14:09,878 - DEBUG - Updated c[1][2] to 96 using A[1][2]=6 and B[2][2]=9
+2024-10-23 15:14:09,878 - DEBUG - Updated c[1][3] to 48 using A[1][0]=4 and B[0][3]=12
+2024-10-23 15:14:09,878 - DEBUG - Updated c[1][3] to 103 using A[1][1]=5 and B[1][3]=11
+2024-10-23 15:14:09,878 - DEBUG - Updated c[1][3] to 163 using A[1][2]=6 and B[2][3]=10
+2024-10-23 15:14:09,878 - DEBUG - Updated c[2][0] to 7 using A[2][0]=7 and B[0][0]=1
+2024-10-23 15:14:09,878 - DEBUG - Updated c[2][0] to 39 using A[2][1]=8 and B[1][0]=4
+2024-10-23 15:14:09,878 - DEBUG - Updated c[2][0] to 102 using A[2][2]=9 and B[2][0]=7
+2024-10-23 15:14:09,878 - DEBUG - Updated c[2][1] to 14 using A[2][0]=7 and B[0][1]=2
+2024-10-23 15:14:09,878 - DEBUG - Updated c[2][1] to 54 using A[2][1]=8 and B[1][1]=5
+2024-10-23 15:14:09,878 - DEBUG - Updated c[2][1] to 126 using A[2][2]=9 and B[2][1]=8
+2024-10-23 15:14:09,878 - DEBUG - Updated c[2][2] to 21 using A[2][0]=7 and B[0][2]=3
+2024-10-23 15:14:09,878 - DEBUG - Updated c[2][2] to 69 using A[2][1]=8 and B[1][2]=6
+2024-10-23 15:14:09,878 - DEBUG - Updated c[2][2] to 150 using A[2][2]=9 and B[2][2]=9
+2024-10-23 15:14:09,878 - DEBUG - Updated c[2][3] to 84 using A[2][0]=7 and B[0][3]=12
+2024-10-23 15:14:09,878 - DEBUG - Updated c[2][3] to 172 using A[2][1]=8 and B[1][3]=11
+2024-10-23 15:14:09,878 - DEBUG - Updated c[2][3] to 262 using A[2][2]=9 and B[2][3]=10
+2024-10-23 15:14:09,878 - CRITICAL - Unexpected error: local variable 'e' referenced before assignment
+2024-10-23 15:14:23,083 - INFO - Starting matrix multiplication.
+2024-10-23 15:14:23,083 - DEBUG - Dimensions of A: 3x3
+2024-10-23 15:14:23,083 - DEBUG - Dimensions of B: 3x4
+2024-10-23 15:14:23,083 - INFO - Matrix dimensions are valid for multiplication.
+2024-10-23 15:14:23,083 - DEBUG - Updated c[0][0] to 1 using A[0][0]=1 and B[0][0]=1
+2024-10-23 15:14:23,083 - DEBUG - Updated c[0][0] to 9 using A[0][1]=2 and B[1][0]=4
+2024-10-23 15:14:23,083 - DEBUG - Updated c[0][0] to 30 using A[0][2]=3 and B[2][0]=7
+2024-10-23 15:14:23,083 - DEBUG - Updated c[0][1] to 2 using A[0][0]=1 and B[0][1]=2
+2024-10-23 15:14:23,083 - DEBUG - Updated c[0][1] to 12 using A[0][1]=2 and B[1][1]=5
+2024-10-23 15:14:23,083 - DEBUG - Updated c[0][1] to 36 using A[0][2]=3 and B[2][1]=8
+2024-10-23 15:14:23,083 - DEBUG - Updated c[0][2] to 3 using A[0][0]=1 and B[0][2]=3
+2024-10-23 15:14:23,083 - DEBUG - Updated c[0][2] to 15 using A[0][1]=2 and B[1][2]=6
+2024-10-23 15:14:23,083 - DEBUG - Updated c[0][2] to 42 using A[0][2]=3 and B[2][2]=9
+2024-10-23 15:14:23,083 - DEBUG - Updated c[0][3] to 12 using A[0][0]=1 and B[0][3]=12
+2024-10-23 15:14:23,083 - DEBUG - Updated c[0][3] to 34 using A[0][1]=2 and B[1][3]=11
+2024-10-23 15:14:23,083 - DEBUG - Updated c[0][3] to 64 using A[0][2]=3 and B[2][3]=10
+2024-10-23 15:14:23,083 - DEBUG - Updated c[1][0] to 4 using A[1][0]=4 and B[0][0]=1
+2024-10-23 15:14:23,083 - DEBUG - Updated c[1][0] to 24 using A[1][1]=5 and B[1][0]=4
+2024-10-23 15:14:23,083 - DEBUG - Updated c[1][0] to 66 using A[1][2]=6 and B[2][0]=7
+2024-10-23 15:14:23,083 - DEBUG - Updated c[1][1] to 8 using A[1][0]=4 and B[0][1]=2
+2024-10-23 15:14:23,083 - DEBUG - Updated c[1][1] to 33 using A[1][1]=5 and B[1][1]=5
+2024-10-23 15:14:23,083 - DEBUG - Updated c[1][1] to 81 using A[1][2]=6 and B[2][1]=8
+2024-10-23 15:14:23,083 - DEBUG - Updated c[1][2] to 12 using A[1][0]=4 and B[0][2]=3
+2024-10-23 15:14:23,083 - DEBUG - Updated c[1][2] to 42 using A[1][1]=5 and B[1][2]=6
+2024-10-23 15:14:23,083 - DEBUG - Updated c[1][2] to 96 using A[1][2]=6 and B[2][2]=9
+2024-10-23 15:14:23,083 - DEBUG - Updated c[1][3] to 48 using A[1][0]=4 and B[0][3]=12
+2024-10-23 15:14:23,083 - DEBUG - Updated c[1][3] to 103 using A[1][1]=5 and B[1][3]=11
+2024-10-23 15:14:23,083 - DEBUG - Updated c[1][3] to 163 using A[1][2]=6 and B[2][3]=10
+2024-10-23 15:14:23,083 - DEBUG - Updated c[2][0] to 7 using A[2][0]=7 and B[0][0]=1
+2024-10-23 15:14:23,083 - DEBUG - Updated c[2][0] to 39 using A[2][1]=8 and B[1][0]=4
+2024-10-23 15:14:23,083 - DEBUG - Updated c[2][0] to 102 using A[2][2]=9 and B[2][0]=7
+2024-10-23 15:14:23,083 - DEBUG - Updated c[2][1] to 14 using A[2][0]=7 and B[0][1]=2
+2024-10-23 15:14:23,083 - DEBUG - Updated c[2][1] to 54 using A[2][1]=8 and B[1][1]=5
+2024-10-23 15:14:23,083 - DEBUG - Updated c[2][1] to 126 using A[2][2]=9 and B[2][1]=8
+2024-10-23 15:14:23,083 - DEBUG - Updated c[2][2] to 21 using A[2][0]=7 and B[0][2]=3
+2024-10-23 15:14:23,083 - DEBUG - Updated c[2][2] to 69 using A[2][1]=8 and B[1][2]=6
+2024-10-23 15:14:23,084 - DEBUG - Updated c[2][2] to 150 using A[2][2]=9 and B[2][2]=9
+2024-10-23 15:14:23,084 - DEBUG - Updated c[2][3] to 84 using A[2][0]=7 and B[0][3]=12
+2024-10-23 15:14:23,084 - DEBUG - Updated c[2][3] to 172 using A[2][1]=8 and B[1][3]=11
+2024-10-23 15:14:23,084 - DEBUG - Updated c[2][3] to 262 using A[2][2]=9 and B[2][3]=10
+2024-10-23 15:14:23,084 - CRITICAL - Unexpected error: local variable 'e' referenced before assignment
+2024-10-23 15:14:26,300 - INFO - Starting matrix multiplication.
+2024-10-23 15:14:26,300 - DEBUG - Dimensions of A: 3x3
+2024-10-23 15:14:26,300 - DEBUG - Dimensions of B: 3x4
+2024-10-23 15:14:26,300 - INFO - Matrix dimensions are valid for multiplication.
+2024-10-23 15:14:26,300 - DEBUG - Updated c[0][0] to 1 using A[0][0]=1 and B[0][0]=1
+2024-10-23 15:14:26,300 - DEBUG - Updated c[0][0] to 9 using A[0][1]=2 and B[1][0]=4
+2024-10-23 15:14:26,300 - DEBUG - Updated c[0][0] to 30 using A[0][2]=3 and B[2][0]=7
+2024-10-23 15:14:26,300 - DEBUG - Updated c[0][1] to 2 using A[0][0]=1 and B[0][1]=2
+2024-10-23 15:14:26,300 - DEBUG - Updated c[0][1] to 12 using A[0][1]=2 and B[1][1]=5
+2024-10-23 15:14:26,300 - DEBUG - Updated c[0][1] to 36 using A[0][2]=3 and B[2][1]=8
+2024-10-23 15:14:26,300 - DEBUG - Updated c[0][2] to 3 using A[0][0]=1 and B[0][2]=3
+2024-10-23 15:14:26,300 - DEBUG - Updated c[0][2] to 15 using A[0][1]=2 and B[1][2]=6
+2024-10-23 15:14:26,300 - DEBUG - Updated c[0][2] to 42 using A[0][2]=3 and B[2][2]=9
+2024-10-23 15:14:26,300 - DEBUG - Updated c[0][3] to 12 using A[0][0]=1 and B[0][3]=12
+2024-10-23 15:14:26,300 - DEBUG - Updated c[0][3] to 34 using A[0][1]=2 and B[1][3]=11
+2024-10-23 15:14:26,300 - DEBUG - Updated c[0][3] to 64 using A[0][2]=3 and B[2][3]=10
+2024-10-23 15:14:26,300 - DEBUG - Updated c[1][0] to 4 using A[1][0]=4 and B[0][0]=1
+2024-10-23 15:14:26,300 - DEBUG - Updated c[1][0] to 24 using A[1][1]=5 and B[1][0]=4
+2024-10-23 15:14:26,300 - DEBUG - Updated c[1][0] to 66 using A[1][2]=6 and B[2][0]=7
+2024-10-23 15:14:26,300 - DEBUG - Updated c[1][1] to 8 using A[1][0]=4 and B[0][1]=2
+2024-10-23 15:14:26,300 - DEBUG - Updated c[1][1] to 33 using A[1][1]=5 and B[1][1]=5
+2024-10-23 15:14:26,300 - DEBUG - Updated c[1][1] to 81 using A[1][2]=6 and B[2][1]=8
+2024-10-23 15:14:26,300 - DEBUG - Updated c[1][2] to 12 using A[1][0]=4 and B[0][2]=3
+2024-10-23 15:14:26,300 - DEBUG - Updated c[1][2] to 42 using A[1][1]=5 and B[1][2]=6
+2024-10-23 15:14:26,300 - DEBUG - Updated c[1][2] to 96 using A[1][2]=6 and B[2][2]=9
+2024-10-23 15:14:26,300 - DEBUG - Updated c[1][3] to 48 using A[1][0]=4 and B[0][3]=12
+2024-10-23 15:14:26,300 - DEBUG - Updated c[1][3] to 103 using A[1][1]=5 and B[1][3]=11
+2024-10-23 15:14:26,300 - DEBUG - Updated c[1][3] to 163 using A[1][2]=6 and B[2][3]=10
+2024-10-23 15:14:26,300 - DEBUG - Updated c[2][0] to 7 using A[2][0]=7 and B[0][0]=1
+2024-10-23 15:14:26,300 - DEBUG - Updated c[2][0] to 39 using A[2][1]=8 and B[1][0]=4
+2024-10-23 15:14:26,300 - DEBUG - Updated c[2][0] to 102 using A[2][2]=9 and B[2][0]=7
+2024-10-23 15:14:26,300 - DEBUG - Updated c[2][1] to 14 using A[2][0]=7 and B[0][1]=2
+2024-10-23 15:14:26,300 - DEBUG - Updated c[2][1] to 54 using A[2][1]=8 and B[1][1]=5
+2024-10-23 15:14:26,300 - DEBUG - Updated c[2][1] to 126 using A[2][2]=9 and B[2][1]=8
+2024-10-23 15:14:26,300 - DEBUG - Updated c[2][2] to 21 using A[2][0]=7 and B[0][2]=3
+2024-10-23 15:14:26,300 - DEBUG - Updated c[2][2] to 69 using A[2][1]=8 and B[1][2]=6
+2024-10-23 15:14:26,300 - DEBUG - Updated c[2][2] to 150 using A[2][2]=9 and B[2][2]=9
+2024-10-23 15:14:26,300 - DEBUG - Updated c[2][3] to 84 using A[2][0]=7 and B[0][3]=12
+2024-10-23 15:14:26,300 - DEBUG - Updated c[2][3] to 172 using A[2][1]=8 and B[1][3]=11
+2024-10-23 15:14:26,300 - DEBUG - Updated c[2][3] to 262 using A[2][2]=9 and B[2][3]=10
+2024-10-23 15:14:26,300 - CRITICAL - Unexpected error: cannot access local variable 'e' where it is not associated with a value

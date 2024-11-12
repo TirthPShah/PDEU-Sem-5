@@ -1,0 +1,10 @@
+Process 5 failed.
+Process 3 initiates election.
+Process 3 becomes the leader.
+Process 3 acknowledges new leader: 3
+Process 3 acknowledges new leader: 3
+Process 3 acknowledges new leader: 3
+Process 3 acknowledges new leader: 3
+Process 5 recovered and starts election.
+Process 5 initiates election.
+Process 5 becomes the leader.

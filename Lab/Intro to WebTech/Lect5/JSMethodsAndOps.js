@@ -280,3 +280,128 @@ function displayResultsForNum() {
     numTableBody.appendChild(row);
   });
 }
+
+function displayResultsForArray() {
+  resultArray.forEach((element) => {
+    element.style.display = "block";
+  });
+
+  const arrA = document.getElementById("ArrayA").value.split(",").map(Number);
+  const arrB = document.getElementById("ArrayB").value.split(",").map(Number);
+  document.getElementById("outputForArray").style.display = "block";
+
+  const arrMethAndAns = [
+    {
+      desc: "Array Concatenation",
+      method: "arrA.concat(arrB)",
+      output: arrA.concat(arrB),
+    },
+    {
+      desc: "Array Length",
+      method: "arrA.length",
+      output: arrA.length,
+    },
+    {
+      desc: "Array Push",
+      method: "arrA.push(6)",
+      output: (() => {
+        let temp = [...arrA];
+        temp.push(6);
+        return temp;
+      })(),
+    },
+    {
+      desc: "Array Pop",
+      method: "arrA.pop()",
+      output: (() => {
+        let temp = [...arrA];
+        temp.pop();
+        return temp;
+      })(),
+    },
+    {
+      desc: "Array Shift",
+      method: "arrA.shift()",
+      output: (() => {
+        let temp = [...arrA];
+        temp.shift();
+        return temp;
+      })(),
+    },
+    {
+      desc: "Array Unshift",
+      method: "arrA.unshift(0)",
+      output: (() => {
+        let temp = [...arrA];
+        temp.unshift(0);
+        return temp;
+      })(),
+    },
+    {
+      desc: "Array Slice",
+      method: "arrA.slice(1, 3)",
+      output: arrA.slice(1, 3),
+    },
+    {
+      desc: "Array Splice",
+      method: "arrA.splice(2, 1)",
+      output: (() => {
+        let temp = [...arrA];
+        temp.splice(2, 1);
+        return temp;
+      })(),
+    },
+    {
+      desc: "Array Join",
+      method: "arrA.join('-')",
+      output: arrA.join("-"),
+    },
+    {
+      desc: "Array Reverse",
+      method: "arrA.reverse()",
+      output: [...arrA].reverse(),
+    },
+    {
+      desc: "Array Sort",
+      method: "arrA.sort()",
+      output: [...arrA].sort(),
+    },
+    {
+      desc: "Array Includes",
+      method: "arrA.includes(2)",
+      output: arrA.includes(2),
+    },
+    {
+      desc: "Array Index Of",
+      method: "arrA.indexOf(2)",
+      output: arrA.indexOf(2),
+    },
+  ];
+
+  const arrayTableBody = document.getElementById("arrayTable");
+  arrMethAndAns.forEach((item) => {
+    const row = document.createElement("tr");
+
+    if (arrayTableBody.rows.length % 2 === 0) {
+      row.style.backgroundColor = "#f5f5dc";
+    } else {
+      row.style.backgroundColor = "#f5f5af";
+    }
+
+    const descCell = document.createElement("td");
+    descCell.textContent = item.desc;
+    row.appendChild(descCell);
+
+    const methodCell = document.createElement("td");
+    methodCell.textContent = item.method;
+    row.appendChild(methodCell);
+
+    const outputCell = document.createElement("td");
+    outputCell.textContent = Array.isArray(item.output)
+      ? JSON.stringify(item.output)
+      : item.output;
+    row.appendChild(outputCell);
+
+    arrayTableBody.appendChild(row);
+  });
+}

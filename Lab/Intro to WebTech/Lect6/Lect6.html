@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration or Sign Up form in HTML CSS</title> 
+    <link rel="stylesheet" href="./Lect6.css">
+  </head>
+  <body>
+    <div class="wrapper">
+      <h2>Registration</h2>
+      <form id="form" action="#">
+        <div class="input-box">
+          <input type="text" placeholder="Enter your name" id="name">
+        </div>
+        <div class="input-box">
+          <input type="text" placeholder="Enter your email" id="email">
+        </div>
+        <div class="input-box">
+          <input type="password" placeholder="Create password" id="passwd">
+        </div>
+        <div class="input-box">
+          <input type="password" placeholder="Confirm password" id="confPasswd">
+        </div>
+        <div class="policy">
+          <input type="checkbox" id="terms">
+          <h3>I accept all terms & conditions</h3>
+        </div>
+        <div class="input-box button">
+          <input type="submit" value="Register Now" id="submitBut">
+        </div>
+      </form>
+    </div>
+
+    <script>
+      const validate = (e) => {
+        e.preventDefault();  // Prevent form submission
+
+        const name = document.getElementById('name');
+        const email = document.getElementById('email');
+        const password = document.getElementById('passwd');
+        const confPasswd = document.getElementById('confPasswd');
+        const terms = document.getElementById('terms');
+
+        // Email validation
+        if (email.value === '') {
+          alert('Email is required');
+          return;
+        }
+
+        // Password validation
+        if (password.value === '') {
+          alert('Password is required');
+          return;
+        }
+
+        // Confirm password validation
+        if (confPasswd.value === '') {
+          alert('Confirm Password is required');
+          return;
+        }
+
+        // Check if passwords match
+        if (password.value !== confPasswd.value) {
+          alert('Passwords do not match');
+          return;
+        }
+
+        // Terms acceptance validation
+        if (!terms.checked) {
+          alert('Please accept terms and conditions');
+          return;
+        }
+
+        // Regular expressions for validation
+        const emailRE = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        const nameRE = /^[A-Za-z\s]+$/;  // Names can contain spaces and letters only
+        const passRE = /^(?=.*[A-Z])(?=.*\d).{9,}$/;  // At least 9 characters, 1 uppercase, 1 digit
+
+        // Validate email format
+        if (!emailRE.test(email.value)) {
+          alert('Email is invalid');
+          return;
+        }
+
+        // Validate name format
+        if (!nameRE.test(name.value)) {
+          alert('Name is invalid');
+          return;
+        }
+
+        // Validate password format
+        if (!passRE.test(password.value)) {
+          alert('Password is invalid. Must be at least 9 characters, contain 1 uppercase letter, and 1 number.');
+          return;
+        }
+
+        alert("Form submitted successfully!");
+      };
+
+      document.getElementById('submitBut').addEventListener('click', validate);
+    </script>
+  </body>
+</html>

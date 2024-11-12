@@ -30,7 +30,7 @@ public:
 
     void initFirstSet() {
         for (const auto& entry : productions) {
-            firstSet[entry.first] = {};
+            firstSet[entry.first] = {};         
         }
     }
 

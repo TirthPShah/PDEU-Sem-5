@@ -1,10 +1,14 @@
-for i in range(1, 17):
-    sete = set()
-    for j in range(1, 17):
-        print((i**j)%17, end=" ")
-        sete.add((i**j) % 17)
+import random
 
-    print(sete)
-    if len(sete) == 16:
-        print("Ands", i)
+# Set the seed
+random.seed(42)
 
+# Your list
+my_list = [1, 2, 3, 4, 5]
+
+# Shuffle the list
+for i in range(0, 9):
+    random.shuffle(my_list)
+    print(my_list)
+
+print(my_list)

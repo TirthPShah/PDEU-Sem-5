@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mouse Coordinates</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        #coordinates {
+            font-size: 24px;
+            background-color: #fff;
+            padding: 20px;
+            border: 2px solid #000;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="coordinates">X: 0, Y: 0</div>
+
+    <script>
+        const coordinatesDiv = document.getElementById('coordinates');
+
+        document.addEventListener('mousemove', function(event) {
+            const x = event.clientX;
+            const y = event.clientY;
+            coordinatesDiv.innerText = `X: ${x}, Y: ${y}`;
+        });
+    </script>
+
+</body>
+</html>

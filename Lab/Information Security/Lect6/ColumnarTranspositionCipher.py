@@ -93,99 +93,108 @@ class ImprovedCol:
         seed_value = sum(ord(char) for char in self.key)
         random.seed(seed_value)
 
-        # Generate a random number (0 or 1) to decide the mode of writing/reading
-        self.mode = random.randint(0, 1)
+        # Random order of columns:
+        self.order = list(range(len(self.key)))
+        random.shuffle(self.order)
+        
+    # Rotate the rows based on key
+    def rotateRows(self, mat):
+        for i, row in enumerate(mat):
+            shift = sum(ord(char) for char in self.key) % len(row)
+            mat[i] = row[shift:] + row[:shift]
+        return mat
 
-    # Function to generate the matrix based on the given mode
-    def getColumnarMatrix(self, text, is_encrypt=True):
-        # Calculate the target length to fill the matrix with extra padding if necessary
-        targetLength = math.ceil(len(text) / len(self.key)) * len(self.key)
-        textList = list(text)
-        # Pad the text with 'X' to fill up the matrix if needed
-        textList += ['X' for _ in range(targetLength - len(text))]
+    # Reverse the row rotation during decryption
+    def reverseRotateRows(self, mat):
+        for i, row in enumerate(mat):
+            shift = sum(ord(char) for char in self.key) % len(row)
+            mat[i] = row[-shift:] + row[:-shift]
+        return mat
+
+    # Create the columnar matrix for the given plaintext
+    def getColumnarMatrix(self, plaintext):
+        # Calculate the target length by rounding up to fill the grid
+        targetLength = math.ceil(len(plaintext) / len(self.key)) * len(self.key)
+        plainList = list(plaintext)
+
+        # Pad the plaintext with 'X' if necessary to complete the matrix
+        plainList += ['X' for _ in range(targetLength - len(plaintext))]
+        plaintext = ''.join(plainList)
 
         mat = []
+        totalRow = int(len(plaintext) / len(self.key))
         look = 0
-        totalRow = len(textList) // len(self.key)
 
-        # Create the matrix row by row
+        # Populate the matrix row by row
         for i in range(totalRow):
             tempList = []
             for j in range(len(self.key)):
-                tempList.append(textList[look])
+                tempList.append(plaintext[look])
                 look += 1
             mat.append(tempList)
 
         return mat
 
-    # Function to encrypt the text based on the randomly chosen mode
+    # Encrypt the plaintext
     def encrypt(self, plaintext):
         mat = self.getColumnarMatrix(plaintext)
-
-        # Get the list of key indices in sorted order based on the key's characters
-        enuList = list(enumerate(self.key))
-        sortedEnuList = sorted(enuList, key=lambda x: x[1])
+        
+        # Rotate the rows
+        mat = self.rotateRows(mat)
+        
+        orderEnu = list(enumerate(self.order))
+        sortedEnuList = sorted(orderEnu, key=lambda x: x[1])
 
         cipher = ''
 
-        totalRow = len(mat)
-
-        # If mode is 0, write by row and read by column (standard transposition)
-        if self.mode == 0:
-            for index, _ in sortedEnuList:
-                for row in range(totalRow):
+        # If column is even, go from top to bottom, otherwise bottom to top
+        for index, _ in orderEnu:
+            if index % 2 == 0:
+                for row in range(len(mat)):
                     cipher += mat[row][index]
-
-        # If mode is 1, write by column and read by row
-        else:
-            for row in mat:
-                for col in row:
-                    cipher += col
+            else:
+                for row in range(len(mat) - 1, -1, -1):
+                    cipher += mat[row][index]
 
         return cipher
 
-    # Function to decrypt the cipher based on the chosen mode
+    # Decrypt the ciphertext
     def decrypt(self, cipher):
         totalRow = math.ceil(len(cipher) / len(self.key))
-
-        # Create an empty matrix for decryption
         mat = [['' for _ in range(len(self.key))] for _ in range(totalRow)]
-
-        # Get the list of key indices in sorted order based on the key's characters
-        enuList = list(enumerate(self.key))
-        sortedEnuList = sorted(enuList, key=lambda x: x[1])
 
         look = 0
 
-        # If mode is 0, read by column and write by row
-        if self.mode == 0:
-            for index, _ in sortedEnuList:
-                for row in range(totalRow):
+        orderEnu = list(enumerate(self.order))
+        sortedEnuList = sorted(orderEnu, key=lambda x: x[1])
+
+        # If column is even, go top-down, otherwise bottom-up to fill the matrix
+        for index, _ in orderEnu:
+            if index % 2 == 0:
+                for row in range(len(mat)):
+                    mat[row][index] = cipher[look]
+                    look += 1
+            else:
+                for row in range(len(mat) - 1, -1, -1):
                     mat[row][index] = cipher[look]
                     look += 1
 
-        # If mode is 1, read by row and write by column
-        else:
-            for row in range(totalRow):
-                for col in range(len(self.key)):
-                    mat[row][col] = cipher[look]
-                    look += 1
+        # Reverse the row rotation
+        mat = self.reverseRotateRows(mat)
 
-        plainText = ''
+        plainText = ''.join(''.join(row) for row in mat)
+        
+        return plainText.rstrip('X')
 
-        # Rebuild the plaintext by reading row by row from the matrix
-        for row in mat:
-            plainText += ''.join(row)
 
-        return plainText.rstrip('X')  # Remove padding (X) if any
 
 
 col = ColumnarTransposition('keys')
-cipher = col.encrypt('hello')
+cipher = col.encrypt('hellohowareyouiamfine'.upper())
 print(f"Cipher: {cipher}")
 print(f"Decrypted: {col.decrypt(cipher)}")
 
 impro = ImprovedCol('keys')
-cipher = impro.encrypt('hfllo')
+cipher = impro.encrypt('hellohowareyouiamfine'.upper())
 print(f"Cipher: {cipher}")
 print(f"Decrypted: {impro.decrypt(cipher)}")

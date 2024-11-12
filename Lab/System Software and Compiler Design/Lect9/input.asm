@@ -1,0 +1,4 @@
+START 200
+MOVER AREG, ='5'
+MOVER BREG, ='0'
+END     
